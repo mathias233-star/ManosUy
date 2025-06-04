@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManosUY - Conectamos Profesionales con Proyectos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS existente */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Garamond', serif; /* Tipo de letra cambiado a Garamond */
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .auth-buttons .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Garamond', serif; /* Asegura que los botones también usen Garamond */
+        }
+
+        .auth-buttons .btn-login {
+            background: none;
+            color: #667eea;
+            border: 2px solid #667eea;
+            margin-right: 10px;
+        }
+
+        .auth-buttons .btn-login:hover {
+            background: #667eea;
+            color: #fff;
+        }
+
+        .auth-buttons .btn-register {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-buttons .btn-register:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            color: #fff;
+            background: url('https://source.unsplash.com/random/1600x900/?tools,construction,design') no-repeat center center/cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons .btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Garamond', serif; /* Asegura que los botones también usen Garamond */
+        }
+
+        .hero-buttons .btn-primary {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-buttons .btn-primary:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+        }
+
+        /* Color del botón Buscar Profesionales modificado */
+        .hero-buttons .btn-secondary {
+            background: #cc3333; /* Rojo oscuro */
+            color: #fff;
+            border: 2px solid #cc3333;
+            box-shadow: 0 4px 15px rgba(204, 51, 51, 0.4);
+        }
+
+        .hero-buttons .btn-secondary:hover {
+            background: #a32929; /* Rojo un poco más oscuro al pasar el mouse */
+            border-color: #a32929;
+            box-shadow: 0 6px 20px rgba(163, 41, 41, 0.5);
+        }
+
+        .features, .how-it-works, .testimonials, .contact {
+            padding: 80px 0;
+            text-align: center;
+            background: #f9f9f9;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features h2, .how-it-works h2, .testimonials h2, .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #667eea;
+            position: relative;
+        }
+
+        .features h2::after, .how-it-works h2::after, .testimonials h2::after, .contact h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-item i {
+            font-size: 3em;
+            color: #764ba2;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .feature-item p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .step-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            flex-basis: 300px;
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-item .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .step-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .step-item p {
+            color: #666;
+        }
+
+        .testimonial-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-item {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            max-width: 350px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-item .quote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .testimonial-item .author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto 0;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Garamond', serif; /* Usa la fuente Garamond */
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            font-family: 'Garamond', serif; /* Asegura que los botones también usen Garamond */
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #764ba2;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Asegura que el modal esté oculto por defecto */
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Clase para mostrar el modal */
+        .modal.show {
+            display: flex; /* Esta clase se añade con JavaScript cuando el modal debe estar visible */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            font-family: 'Garamond', serif; /* Modal content uses Garamond */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"],
+        .modal-content input[type="password"], /* Estilo para el nuevo campo de contraseña */
+        .modal-content textarea,
+        .modal-content input[type="file"],
+        .modal-content input[type="tel"] { /* Estilo para el input de teléfono */
+            width: calc(100% - 22px); /* Ajuste para padding/border */
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Garamond', serif; /* Usa la fuente Garamond */
+        }
+
+        .modal-content input[type="file"] {
+            border: none; /* Los inputs de tipo file a menudo se ven mejor sin borde */
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        .modal-content button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            font-family: 'Garamond', serif; /* Asegura que los botones también usen Garamond */
+        }
+
+        .modal-content button[type="submit"]:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+        }
+
+        /* Estilos para los radio buttons de tipo de registro (Se mantienen aunque no se usen con el registro directo) */
+        .radio-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .radio-group label {
+            display: inline-block;
+            margin: 0 15px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            vertical-align: middle;
+            transform: scale(1.2); /* Agrandar un poco el radio button */
+        }
+
+        /* Sección de chat */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1002; /* Asegurar que esté por encima de los modales */
+            display: none; /* Inicialmente oculto */
+        }
+        
+        /* Estilo para chat minimizado */
+        .chat-container.minimized {
+            height: 50px;
+            max-height: 50px; /* Asegura que no se expanda al minimizar */
+            padding: 0;
+            overflow: hidden;
+            border-radius: 15px; /* Mantener bordes redondeados */
+            transition: height 0.3s ease-in-out;
+        }
+
+
+        .chat-header {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header .close-chat {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f0f2f5;
+        }
+
+        .chat-message {
+            background: #e0e0e0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 0.9em;
+        }
+
+        .chat-message.sent {
+            background: #667eea;
+            color: #fff;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-message.received {
+            background: #fff;
+            color: #333;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            background: #fff;
+        }
+
+        .chat-input input[type="text"] {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-right: 10px;
+            font-family: 'Garamond', serif;
+        }
+
+        .chat-input button {
+            background: #667eea;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: #764ba2;
+        }
+
+        /* --- Nuevos Estilos para las páginas de Foro y Perfiles de Profesionales --- */
+        .page-content {
+            display: none; /* Oculto por defecto */
+            padding: 60px 0;
+            background: #f9f9f9;
+            min-height: calc(100vh - 120px); /* Ajuste para header y footer */
+        }
+
+        .page-content h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #667eea;
+            position: relative;
+        }
+
+        .page-content h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Estilos para el Foro de Clientes */
+        .forum-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .forum-post-item {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .forum-post-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .forum-post-item h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+            cursor: pointer; /* Para indicar que el título del post es clickeable */
+        }
+
+        .forum-post-item p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .forum-post-item .post-meta {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .forum-post-item .btn-contact {
+            background: linear-gradient(45deg, #28a745 0%, #218838 100%); /* Verde */
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+            font-family: 'Garamond', serif;
+        }
+
+        .forum-post-item .btn-contact:hover {
+            background: linear-gradient(45deg, #218838 0%, #1e7e34 100%);
+        }
+
+        /* Estilos para el formulario de publicación de foro */
+        .forum-post-form {
+            max-width: 700px;
+            margin: 50px auto 0;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .forum-post-form h3 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .forum-post-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .forum-post-form input[type="text"],
+        .forum-post-form textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Garamond', serif;
+        }
+
+        .forum-post-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .forum-post-form button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            font-family: 'Garamond', serif;
+        }
+
+        .forum-post-form button:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+        }
+
+
+        /* Estilos para Perfiles de Profesionales */
+        .search-bar {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-bar input {
+            width: 80%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Garamond', serif;
+        }
+
+        .search-bar input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .professional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .professional-card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .professional-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .professional-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #667eea;
+        }
+
+        .professional-card h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.5em;
+        }
+
+        .professional-card p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .professional-card .specialty {
+            font-weight: 600;
+            color: #764ba2;
+        }
+
+        .professional-card .rate {
+            font-weight: 700;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .professional-card .btn-view-profile {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Garamond', serif;
+            margin-right: 10px; /* Espacio entre botones */
+        }
+
+        .professional-card .btn-view-profile:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .professional-card .btn-contact-worker {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #28a745 0%, #218838 100%); /* Verde */
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Garamond', serif;
+        }
+
+        .professional-card .btn-contact-worker:hover {
+            background: linear-gradient(45deg, #218838 0%, #1e7e34 100%);
+        }
+
+        /* --- Estilos para el Modal de Registro (Profesional/Usuario) --- */
+        /* Eliminamos los estilos del radio-group del modal principal ya que ya no se usa */
+
+        /* Modal de Perfil de Profesional (para visualizar detalles) */
+        #viewProfileModal #viewProfileWorkPhotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        #viewProfileModal #viewProfileWorkPhotos img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Modal para ver perfil de usuario (por parte del profesional) */
+        #viewUserModal .modal-content {
+            max-width: 400px; /* Un poco más pequeño que el de profesional */
+        }
+        #viewUserModal .modal-content .profile-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+        #viewUserModal .modal-content .profile-details p {
+            margin-bottom: 10px;
+        }
+        #viewUserModal .modal-content .profile-details strong {
+            color: #764ba2;
+        }
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">ManosUY</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#how-it-works">Cómo Funciona</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Iniciar Sesión</button>
+                <button class="btn btn-register" id="registerBtn">Registrarte</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <section class="hero" id="homeSection">
+            <div class="container">
+                <h1>Conectamos Profesionales con Proyectos</h1>
+                <p>Encuentra el talento que necesitas o los proyectos que impulsarán tu carrera.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="startRegisterProfessionalBtn">Soy Profesional</button>
+                    <button class="btn btn-secondary" id="startRegisterUserBtn">Busco Profesionales</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>¿Por qué elegirnos?</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-search"></i>
+                        <h3>Fácil Búsqueda</h3>
+                        <p>Encuentra profesionales calificados o proyectos relevantes en segundos con nuestros filtros avanzados.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Conexiones Directas</h3>
+                        <p>Comunícate directamente con profesionales o clientes sin intermediarios.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Variedad de Servicios</h3>
+                        <p>Desde reparaciones del hogar hasta desarrollo web, cubrimos una amplia gama de especialidades.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Profesionales Verificados</h3>
+                        <p>Nuestra plataforma verifica a los profesionales para asegurar la calidad y confianza en cada proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>Cómo Funciona</h2>
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="icon"><i class="fas fa-user-plus"></i></div>
+                        <h3>1. Regístrate</h3>
+                        <p>Crea tu perfil como profesional o publica tus proyectos.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="icon"><i class="fas fa-search-dollar"></i></div>
+                        <h3>2. Busca o Publica</h3>
+                        <p>Encuentra el profesional ideal o publica tu proyecto para recibir ofertas.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="icon"><i class="fas fa-comments"></i></div>
+                        <h3>3. Conecta</h3>
+                        <p>Contacta directamente, chatea y negocia los detalles.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>4. Concreta el Proyecto</h3>
+                        <p>Una vez satisfecho, evalúa y cierra el proyecto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>Lo que dicen nuestros usuarios</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-item">
+                        <p class="quote">"Encontré al electricista perfecto para mi casa en cuestión de minutos. ¡Excelente servicio!"</p>
+                        <p class="author">- María P.</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="quote">"Gracias a ManosUY, conseguí varios proyectos interesantes para mi negocio de diseño gráfico. ¡Muy recomendable!"</p>
+                        <p class="author">- Juan C.</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="quote">"La plataforma es muy intuitiva y me permitió encontrar a un desarrollador web talentoso sin complicaciones."</p>
+                        <p class="author">- Ana G.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <form class="contact-form">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" required></textarea>
+
+                    <button type="submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <section id="forumPage" class="page-content">
+        <div class="container">
+            <h2>Foro de Proyectos Disponibles</h2>
+
+            <div class="forum-post-form" id="forumPostFormSection">
+                <h3>Publica tu Proyecto</h3>
+                <form id="newForumPostForm">
+                    <label for="postTitle">Título del Proyecto:</label>
+                    <input type="text" id="postTitle" name="postTitle" placeholder="Ej: Necesito fontanero para baño" required>
+
+                    <label for="postDescription">Descripción del Proyecto:</label>
+                    <textarea id="postDescription" name="postDescription" placeholder="Detalla lo que necesitas, ubicación, etc." required></textarea>
+
+                    <button type="submit">Publicar Proyecto</button>
+                </form>
+            </div>
+
+            <div class="forum-posts" id="forumPostsContainer">
+                <div class="forum-post-item" data-post-id="post1" data-user-id="clientX" data-user-name="Cliente X" data-user-location="Centro, Montevideo" data-user-phone="099123456">
+                    <h3 class="post-title-clickable">Necesito Electricista para Instalación</h3>
+                    <p>Busco electricista matriculado para instalar nuevas tomas de corriente y luminarias en mi apartamento. Urgente.</p>
+                    <p class="post-meta">Publicado por: <span class="post-author-clickable" data-user-id="clientX" data-user-name="Cliente X" data-user-location="Centro, Montevideo" data-user-phone="099123456">Cliente X</span> | Ubicación: Centro, Montevideo</p>
+                    <button class="btn-contact contact-user-btn" data-user-id="clientX" data-user-name="Cliente X">Contactar Usuario</button>
+                </div>
+                <div class="forum-post-item" data-post-id="post2" data-user-id="artesaniasLuna" data-user-name="Artesanías Luna" data-user-location="Canelones" data-user-phone="098765432">
+                    <h3 class="post-title-clickable">Desarrollador Web para E-commerce</h3>
+                    <p>Proyecto de tienda online para venta de artesanías. Se requiere experiencia en Shopify o similar.</p>
+                    <p class="post-meta">Publicado por: <span class="post-author-clickable" data-user-id="artesaniasLuna" data-user-name="Artesanías Luna" data-user-location="Canelones" data-user-phone="098765432">Artesanías Luna</span> | Ubicación: Canelones</p>
+                    <button class="btn-contact contact-user-btn" data-user-id="artesaniasLuna" data-user-name="Artesanías Luna">Contactar Usuario</button>
+                </div>
+                <div class="forum-post-item" data-post-id="post3" data-user-id="vecinoY" data-user-name="Vecino Y" data-user-location="Punta Carretas, Montevideo" data-user-phone="091234567">
+                    <h3 class="post-title-clickable">Albañil para Reparación de Muro</h3>
+                    <p>Reparación de muro exterior con humedad en casa particular. Solicito presupuesto.</p>
+                    <p class="post-meta">Publicado por: <span class="post-author-clickable" data-user-id="vecinoY" data-user-name="Vecino Y" data-user-location="Punta Carretas, Montevideo" data-user-phone="091234567">Vecino Y</span> | Ubicación: Punta Carretas, Montevideo</p>
+                    <button class="btn-contact contact-user-btn" data-user-id="vecinoY" data-user-name="Vecino Y">Contactar Usuario</button>
+                </div>
+                <div class="forum-post-item" data-post-id="post4" data-user-id="modaZ" data-user-name="Moda Z" data-user-location="Online" data-user-phone="092345678">
+                    <h3 class="post-title-clickable">Diseñador Gráfico para Logo</h3>
+                    <p>Necesito un logo moderno y atractivo para mi nueva marca de ropa.</p>
+                    <p class="post-meta">Publicado por: <span class="post-author-clickable" data-user-id="modaZ" data-user-name="Moda Z" data-user-location="Online" data-user-phone="092345678">Moda Z</span> | Ubicación: Online</p>
+                    <button class="btn-contact contact-user-btn" data-user-id="modaZ" data-user-name="Moda Z">Contactar Usuario</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="professionalProfilesPage" class="page-content">
+        <div class="container">
+            <h2>Nuestros Profesionales</h2>
+            <div class="search-bar">
+                <input type="text" id="specialtySearchInput" placeholder="Buscar por especialidad de oficio (ej: Electricista, Diseñador, Albañil...)">
+            </div>
+            <div class="professional-grid" id="professionalList">
+                <div class="professional-card" data-specialty="Electricista">
+                    <img src="https://i.pravatar.cc/100?img=1" alt="Foto de Perfil">
+                    <h3>Carlos Pérez</h3>
+                    <p class="specialty">Electricista</p>
+                    <p>Experiencia: 15 años | Ubicación: Montevideo</p>
+                    <p class="rate">$500/hora</p>
+                    <button class="btn-view-profile" data-profile-id="carlosPerez">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="carlosPerez" data-worker-name="Carlos Pérez">Contactar Trabajador</button>
+                </div>
+                <div class="professional-card" data-specialty="Diseñador Gráfico">
+                    <img src="https://i.pravatar.cc/100?img=2" alt="Foto de Perfil">
+                    <h3>Ana López</h3>
+                    <p class="specialty">Diseñadora Gráfica</p>
+                    <p>Experiencia: 8 años | Ubicación: Canelones</p>
+                    <p class="rate">$700/hora</p>
+                    <button class="btn-view-profile" data-profile-id="anaLopez">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="anaLopez" data-worker-name="Ana López">Contactar Trabajador</button>
+                </div>
+                <div class="professional-card" data-specialty="Albañil">
+                    <img src="https://i.pravatar.cc/100?img=3" alt="Foto de Perfil">
+                    <h3>Roberto Giménez</h3>
+                    <p class="specialty">Albañil</p>
+                    <p>Experiencia: 20 años | Ubicación: San José</p>
+                    <p class="rate">$450/hora</p>
+                    <button class="btn-view-profile" data-profile-id="robertoGimenez">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="robertoGimenez" data-worker-name="Roberto Giménez">Contactar Trabajador</button>
+                </div>
+                <div class="professional-card" data-specialty="Desarrollador Web">
+                    <img src="https://i.pravatar.cc/100?img=4" alt="Foto de Perfil">
+                    <h3>Sofía Herrera</h3>
+                    <p class="specialty">Desarrolladora Web</p>
+                    <p>Experiencia: 6 años | Ubicación: Montevideo</p>
+                    <p class="rate">$900/hora</p>
+                    <button class="btn-view-profile" data-profile-id="sofiaHerrera">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="sofiaHerrera" data-worker-name="Sofía Herrera">Contactar Trabajador</button>
+                </div>
+                <div class="professional-card" data-specialty="Electricista">
+                    <img src="https://i.pravatar.cc/100?img=5" alt="Foto de Perfil">
+                    <h3>Juan Rodriguez</h3>
+                    <p class="specialty">Electricista</p>
+                    <p>Experiencia: 10 años | Ubicación: Maldonado</p>
+                    <p class="rate">$550/hora</p>
+                    <button class="btn-view-profile" data-profile-id="juanRodriguez">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="juanRodriguez" data-worker-name="Juan Rodriguez">Contactar Trabajador</button>
+                </div>
+                <div class="professional-card" data-specialty="Carpintero">
+                    <img src="https://i.pravatar.cc/100?img=6" alt="Foto de Perfil">
+                    <h3>Miguel Sánchez</h3>
+                    <p class="specialty">Carpintero</p>
+                    <p>Experiencia: 12 años | Ubicación: Colonia</p>
+                    <p class="rate">$600/hora</p>
+                    <button class="btn-view-profile" data-profile-id="miguelSanchez">Ver Perfil</button>
+                    <button class="btn-contact-worker contact-worker-btn" data-worker-id="miguelSanchez" data-worker-name="Miguel Sánchez">Contactar Trabajador</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ManosUY. Todos los derechos reservados.</p>
+            <p><a href="#">Política de Privacidad</a> | <a href="#">Términos de Servicio</a></p>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email" required>
+
+                <label for="loginPassword">Contraseña:</label>
+                <input type="password" id="loginPassword" name="password" required>
+
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerProfessionalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Registrar Profesional</h2>
+            <form id="registerProfessionalForm">
+                <label for="profRegisterEmail">Email:</label>
+                <input type="email" id="profRegisterEmail" name="email" required>
+
+                <label for="profRegisterPassword">Contraseña:</label>
+                <input type="password" id="profRegisterPassword" name="password" required>
+
+                <label for="profRegisterName">Nombre Completo:</label>
+                <input type="text" id="profRegisterName" name="name" required>
+
+                <label for="profRegisterSpecialty">Especialidad Principal:</label>
+                <input type="text" id="profRegisterSpecialty" name="specialty" placeholder="Ej: Electricista, Diseñador" required>
+
+                <label for="profRegisterLocation">Ubicación (Ciudad, País):</label>
+                <input type="text" id="profRegisterLocation" name="location" placeholder="Ej: Montevideo, Uruguay" required>
+
+                <button type="submit">Registrarme como Profesional</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Registrar Usuario</h2>
+            <form id="registerUserForm">
+                <label for="userRegisterEmail">Email:</label>
+                <input type="email" id="userRegisterEmail" name="email" required>
+
+                <label for="userRegisterPassword">Contraseña:</label>
+                <input type="password" id="userRegisterPassword" name="password" required>
+
+                <label for="userRegisterName">Nombre Completo:</label>
+                <input type="text" id="userRegisterName" name="name" required>
+
+                <label for="userRegisterLocation">Ubicación (Ciudad, País):</label>
+                <input type="text" id="userRegisterLocation" name="location" placeholder="Ej: Montevideo, Uruguay" required>
+
+                <label for="userRegisterPhone">Número de Teléfono (Opcional, para notificaciones):</label>
+                <input type="tel" id="userRegisterPhone" name="phone">
+
+                <button type="submit">Registrarme como Usuario</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Editar Perfil Profesional</h2>
+            <form id="editProfileForm">
+                <label for="profilePhoto">Foto de Perfil:</label>
+                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+
+                <label for="workPhotos">Fotos de Trabajos Realizados:</label>
+                <input type="file" id="workPhotos" name="workPhotos" accept="image/*" multiple>
+
+                <label for="professionalDescription">Descripción Profesional:</label>
+                <textarea id="professionalDescription" name="professionalDescription" rows="5" placeholder="Describe tu experiencia, habilidades y servicios..."></textarea>
+
+                <label for="workedCompany">Empresa(s) donde has trabajado (separadas por coma):</label>
+                <input type="text" id="workedCompany" name="workedCompany" placeholder="Ej: Google, Microsoft, Freelance">
+                 <small>Si nunca trabajaste en una empresa, puedes dejarlo en blanco o escribir "N/A".</small>
+                <br><br>
+
+                <label for="profLocation">Tu Ubicación (Ciudad/País):</label>
+                <input type="text" id="profLocation" name="profLocation" placeholder="Ej: Montevideo, Uruguay">
+
+                <label for="mainSpecialty">Especialidad Principal:</label>
+                <input type="text" id="mainSpecialty" name="mainSpecialty" required>
+
+                <label for="hourlyRate">Tarifa por Hora:</label>
+                <input type="text" id="hourlyRate" name="hourlyRate" placeholder="$ por hora" required>
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="viewProfileName"></h2>
+            <p><strong>Especialidad:</strong> <span id="viewProfileSpecialty"></span></p>
+            <p><strong>Ubicación:</strong> <span id="viewProfileLocation"></span></p>
+            <p><strong>Tarifa por Hora:</strong> <span id="viewProfileRate"></span></p>
+            <p><strong>Descripción:</strong> <span id="viewProfileDescription"></span></p>
+            <h3>Trabajos Realizados:</h3>
+            <div id="viewProfileWorkPhotos">
+                <img src="https://source.unsplash.com/random/200x150/?construction" alt="Trabajo 1">
+                <img src="https://source.unsplash.com/random/200x150/?renovation" alt="Trabajo 2">
+                <img src="https://source.unsplash.com/random/200x150/?tools" alt="Trabajo 3">
+            </div>
+            <button class="btn-contact-worker contact-worker-btn" id="viewProfileContactBtn">Contactar Trabajador</button>
+        </div>
+    </div>
+
+    <div id="viewUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="viewUserName"></h2>
+            <div class="profile-details">
+                <p><strong>Ubicación:</strong> <span id="viewUserLocation"></span></p>
+                <p><strong>Teléfono:</strong> <span id="viewUserPhone">N/A</span></p>
+                <p><strong>Email:</strong> <span id="viewUserEmail"></span></p>
+            </div>
+            <button class="btn-contact-worker contact-user-from-profile-btn" id="viewUserContactBtn">Iniciar Chat</button>
+        </div>
+    </div>
+
+
+    <div id="chatDemo" class="chat-container">
+        <div class="chat-header">
+            Chat con <span id="chatTargetName">Nadie</span>
+            <span class="close-chat">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message received">¡Hola! ¿En qué puedo ayudarte?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInputField" placeholder="Escribe tu mensaje...">
+            <button id="chatSendButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modals
+            const loginModal = document.getElementById('loginModal');
+            const registerProfessionalModal = document.getElementById('registerProfessionalModal');
+            const registerUserModal = document.getElementById('registerUserModal');
+            const editProfileModal = document.getElementById('editProfileModal');
+            const viewProfileModal = document.getElementById('viewProfileModal');
+            const viewUserModal = document.getElementById('viewUserModal'); // Nuevo modal de usuario
+
+            // Get buttons that open modals
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const startRegisterProfessionalBtn = document.getElementById('startRegisterProfessionalBtn');
+            const startRegisterUserBtn = document.getElementById('startRegisterUserBtn');
+
+            // Get the <span> element that closes the modals
+            const closeButtons = document.querySelectorAll('.close-button');
+
+            // Get elements related to chat
+            const chatHeader = document.querySelector('.chat-header');
+            const chatContainer = document.getElementById('chatDemo');
+            const chatMessagesContainer = document.getElementById('chatMessages');
+            const chatInputField = document.getElementById('chatInputField');
+            const chatSendButton = document.getElementById('chatSendButton');
+            const chatTargetNameSpan = document.getElementById('chatTargetName');
+
+            // Get content sections
+            const homeSection = document.getElementById('homeSection');
+            const featuresSection = document.getElementById('features');
+            const howItWorksSection = document.getElementById('how-it-works');
+            const testimonialsSection = document.getElementById('testimonials');
+            const contactSection = document.getElementById('contact');
+            const forumPage = document.getElementById('forumPage');
+            const professionalProfilesPage = document.getElementById('professionalProfilesPage');
+
+            // Placeholder for user login status and type
+            let isLoggedIn = false;
+            let currentUserType = null; // 'professional' or 'user'
+            let currentUserName = null; // Nombre del usuario logueado
+            let currentChatId = null; // Para simular el chat individual
+            let chatHistory = {}; // Objeto para guardar el historial de chats (simulado)
+
+            // Dummy professional data for viewProfileModal and search
+            const dummyProfessionals = [
+                { id: 'carlosPerez', name: 'Carlos Pérez', specialty: 'Electricista', location: 'Montevideo', rate: '$500/hora', description: 'Electricista matriculado con 15 años de experiencia en instalaciones residenciales e industriales.', workPhotos: ['https://source.unsplash.com/random/200x150/?electrician', 'https://source.unsplash.com/random/200x150/?wiring'] },
+                { id: 'anaLopez', name: 'Ana López', specialty: 'Diseñadora Gráfica', location: 'Canelones', rate: '$700/hora', description: 'Diseñadora creativa especializada en branding y diseño web.', workPhotos: ['https://source.unsplash.com/random/200x150/?design,logo', 'https://source.unsplash.com/random/200x150/?webdesign'] },
+                { id: 'robertoGimenez', name: 'Roberto Giménez', specialty: 'Albañil', location: 'San José', rate: '$450/hora', description: 'Maestro albañil con 20 años de experiencia en construcción y reformas.', workPhotos: ['https://source.unsplash.com/random/200x150/?brickwork', 'https://source.unsplash.com/random/200x150/?construction-site'] },
+                { id: 'sofiaHerrera', name: 'Sofía Herrera', specialty: 'Desarrolladora Web', location: 'Montevideo', rate: '$900/hora', description: 'Desarrolladora Full Stack con experiencia en e-commerce y aplicaciones web.', workPhotos: ['https://source.unsplash.com/random/200x150/?programming', 'https://source.unsplash.com/random/200x150/?coding'] },
+                { id: 'juanRodriguez', name: 'Juan Rodriguez', specialty: 'Electricista', location: 'Maldonado', rate: '$550/hora', description: 'Instalaciones eléctricas seguras y certificadas. Disponible para emergencias.', workPhotos: ['https://source.unsplash.com/random/200x150/?electrical-panel', 'https://source.unsplash.com/random/200x150/?light-fixture'] },
+                { id: 'miguelSanchez', name: 'Miguel Sánchez', specialty: 'Carpintero', location: 'Colonia', rate: '$600/hora', description: 'Ebanista con pasión por la madera. Muebles a medida y restauraciones.', workPhotos: ['https://source.unsplash.com/random/200x150/?woodworking', 'https://source.unsplash.com/random/200x150/?furniture'] }
+            ];
+
+            // Dummy user data for simulated user profiles (for professionals to view)
+            const dummyUsers = [
+                { id: 'clientX', name: 'Cliente X', location: 'Centro, Montevideo', phone: '099123456', email: 'cliente.x@example.com' },
+                { id: 'artesaniasLuna', name: 'Artesanías Luna', location: 'Canelones', phone: '098765432', email: 'artesanias.luna@example.com' },
+                { id: 'vecinoY', name: 'Vecino Y', location: 'Punta Carretas, Montevideo', phone: '091234567', email: 'vecino.y@example.com' },
+                { id: 'modaZ', name: 'Moda Z', location: 'Online', phone: '092345678', email: 'moda.z@example.com' },
+            ];
+
+
+            // Function to hide all main content sections except header and footer
+            function hideAllContentSections() {
+                const mainSections = document.querySelectorAll('main > section:not(.hero), .page-content');
+                mainSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                // Always hide hero section when navigating away
+                homeSection.style.display = 'none';
+                featuresSection.style.display = 'none';
+                howItWorksSection.style.display = 'none';
+                testimonialsSection.style.display = 'none';
+                contactSection.style.display = 'none';
+            }
+
+            // Function to show default landing page sections
+            function showDefaultLandingPage() {
+                homeSection.style.display = 'block';
+                featuresSection.style.display = 'block';
+                howItWorksSection.style.display = 'block';
+                testimonialsSection.style.display = 'block';
+                contactSection.style.display = 'block';
+            }
+
+            // Function to update UI based on login status and user type
+            function updateUI() {
+                const authButtons = document.querySelector('.auth-buttons');
+                const navLinks = document.querySelector('.nav-links');
+                const forumPostFormSection = document.getElementById('forumPostFormSection');
+
+                // Reiniciar visibilidad de enlaces de navegación por defecto
+                navLinks.innerHTML = `
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#how-it-works">Cómo Funciona</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                `;
+
+                if (isLoggedIn) {
+                    authButtons.innerHTML = `
+                        <button class="btn btn-login" id="profileBtn">Mi Perfil</button>
+                        <button class="btn btn-register" id="logoutBtn">Cerrar Sesión</button>
+                    `;
+                    // Add event listeners for new buttons
+                    document.getElementById('profileBtn').addEventListener('click', function() {
+                        if (currentUserType === 'professional') {
+                            editProfileModal.classList.add('show');
+                        } else {
+                            alert('Funcionalidad de edición de perfil de usuario en construcción. 🚧');
+                        }
+                    });
+                    document.getElementById('logoutBtn').addEventListener('click', function() {
+                        isLoggedIn = false;
+                        currentUserType = null;
+                        currentUserName = null;
+                        currentChatId = null; // Reiniciar chat al cerrar sesión
+                        chatHistory = {}; // Limpiar historial de chat simulado
+                        hideAllContentSections();
+                        showDefaultLandingPage(); // Mostrar la página de inicio al cerrar sesión
+                        updateUI();
+                        alert('Has cerrado sesión. ¡Vuelve pronto! 👋');
+                    });
+                    chatContainer.style.display = 'flex'; // Muestra el chat al loguearse
+
+                    // Redirect based on user type after login/registration
+                    hideAllContentSections();
+                    if (currentUserType === 'professional') {
+                        forumPage.style.display = 'block'; // Mostrar el foro de proyectos para profesionales
+                        forumPostFormSection.style.display = 'none'; // Profesionales no publican, solo ven
+                        // Añadir enlace al foro en la navegación
+                        navLinks.innerHTML += `<li><a href="#" id="navForumLink">Foro</a></li>`;
+                        document.getElementById('navForumLink').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            hideAllContentSections();
+                            forumPage.style.display = 'block';
+                        });
+
+                    } else if (currentUserType === 'user') {
+                        professionalProfilesPage.style.display = 'block'; // Mostrar perfiles de profesionales para usuarios
+                        forumPostFormSection.style.display = 'block'; // Usuarios pueden publicar en el foro
+                        // Añadir enlace a perfiles en la navegación
+                        navLinks.innerHTML += `<li><a href="#" id="navProfilesLink">Profesionales</a></li>`;
+                        document.getElementById('navProfilesLink').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            hideAllContentSections();
+                            professionalProfilesPage.style.display = 'block';
+                        });
+                    }
+                    // Ocultar el logo para que solo tenga la funcionalidad de volver al home si no hay login
+                    document.querySelector('.logo').removeEventListener('click', showDefaultLandingPage);
+                    document.querySelector('.logo').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (currentUserType === 'professional') {
+                            hideAllContentSections();
+                            forumPage.style.display = 'block';
+                        } else if (currentUserType === 'user') {
+                            hideAllContentSections();
+                            professionalProfilesPage.style.display = 'block';
+                        } else {
+                            showDefaultLandingPage();
+                        }
+                    });
+
+                } else {
+                    authButtons.innerHTML = `
+                        <button class="btn btn-login" id="loginBtn">Iniciar Sesión</button>
+                        <button class="btn btn-register" id="registerBtn">Registrarte</button>
+                    `;
+                    // Re-attach event listeners for login/register buttons
+                    document.getElementById('loginBtn').addEventListener('click', function() {
+                        loginModal.classList.add('show');
+                    });
+                    document.getElementById('registerBtn').addEventListener('click', function() {
+                        registerProfessionalModal.classList.add('show'); // Por defecto, abrimos el registro profesional
+                    });
+                    chatContainer.style.display = 'none'; // Ocultar chat si no hay sesión
+                    hideAllContentSections();
+                    showDefaultLandingPage();
+
+                    // Asegurarse de que el logo vuelva al home cuando no hay sesión
+                    document.querySelector('.logo').removeEventListener('click', (e) => {}); // Remover listener anterior si existe
+                    document.querySelector('.logo').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showDefaultLandingPage();
+                    });
+                }
+            }
+
+            // Open Login Modal
+            loginBtn.addEventListener('click', function() {
+                loginModal.classList.add('show');
+            });
+
+            // Open Register Professional Modal from header "Registrarte"
+            registerBtn.addEventListener('click', function() {
+                registerProfessionalModal.classList.add('show');
+            });
+
+            // Open Register Professional Modal from hero section "Soy Profesional"
+            startRegisterProfessionalBtn.addEventListener('click', function() {
+                registerProfessionalModal.classList.add('show');
+            });
+
+            // Open Register User Modal from hero section "Busco Profesionales"
+            startRegisterUserBtn.addEventListener('click', function() {
+                registerUserModal.classList.add('show');
+            });
+
+            // Close Modals with the <span> (x) button
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.modal').classList.remove('show');
+                });
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target == loginModal) { loginModal.classList.remove('show'); }
+                if (event.target == registerProfessionalModal) { registerProfessionalModal.classList.remove('show'); }
+                if (event.target == registerUserModal) { registerUserModal.classList.remove('show'); }
+                if (event.target == editProfileModal) { editProfileModal.classList.remove('show'); }
+                if (event.target == viewProfileModal) { viewProfileModal.classList.remove('show'); }
+                if (event.target == viewUserModal) { viewUserModal.classList.remove('show'); }
+            });
+
+            // Simulate Login (For demo purposes only, replace with actual backend logic)
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                // Simula el tipo de usuario basado en el email
+                if (email.includes('@profesional.com')) {
+                    currentUserType = 'professional';
+                    currentUserName = 'Profesional Demo';
+                } else {
+                    currentUserType = 'user';
+                    currentUserName = 'Usuario Demo';
+                }
+                alert(`Intentando iniciar sesión como ${currentUserType}... (funcionalidad de backend necesaria para verificar credenciales) 🔑`);
+                isLoggedIn = true;
+                loginModal.classList.remove('show');
+                updateUI();
+            });
+
+            // Register Professional Form submission
+            document.getElementById('registerProfessionalForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('profRegisterEmail').value;
+                const name = document.getElementById('profRegisterName').value;
+                alert(`Registrando como Profesional: ${name}... ¡Bienvenido! (funcionalidad de backend necesaria para guardar datos) 👷`);
+                isLoggedIn = true;
+                currentUserType = 'professional';
+                currentUserName = name;
+                registerProfessionalModal.classList.remove('show');
+                updateUI(); // Esto redirigirá al foro de profesionales
+            });
+
+            // Register User Form submission
+            document.getElementById('registerUserForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('userRegisterEmail').value;
+                const name = document.getElementById('userRegisterName').value;
+                alert(`Registrando como Usuario: ${name}... ¡Comienza tu búsqueda! (funcionalidad de backend necesaria para guardar datos) 🤝`);
+                isLoggedIn = true;
+                currentUserType = 'user';
+                currentUserName = name;
+                registerUserModal.classList.remove('show');
+                updateUI(); // Esto redirigirá a la página de perfiles de profesionales
+            });
+
+            // Edit Profile form submission (Professional only)
+            document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Guardando cambios del perfil... (funcionalidad de backend necesaria para guardar datos) 💾');
+                editProfileModal.classList.remove('show');
+            });
+
+            // --- Chat functionality ---
+            chatHeader.addEventListener('click', function() {
+                chatContainer.classList.toggle('minimized');
+            });
+
+            document.querySelector('.close-chat').addEventListener('click', function(e) {
+                e.stopPropagation(); // Evita que se minimice al cerrar
+                chatContainer.style.display = 'none';
+            });
+
+            function renderChatMessages(chatId) {
+                chatMessagesContainer.innerHTML = '';
+                if (!chatHistory[chatId]) {
+                    chatHistory[chatId] = []; // Inicializa el historial si no existe
+                }
+                chatHistory[chatId].forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.classList.add('chat-message');
+                    msgDiv.classList.add(msg.type);
+                    msgDiv.textContent = msg.text;
+                    chatMessagesContainer.appendChild(msgDiv);
+                });
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            }
+
+            function sendMessage() {
+                const messageText = chatInputField.value.trim();
+                if (messageText && currentChatId) {
+                    if (!chatHistory[currentChatId]) {
+                        chatHistory[currentChatId] = [];
+                    }
+                    chatHistory[currentChatId].push({ text: messageText, type: 'sent' });
+                    chatInputField.value = '';
+                    renderChatMessages(currentChatId);
+
+                    // Simular respuesta del otro lado del chat
+                    setTimeout(() => {
+                        if (chatHistory[currentChatId]) {
+                            chatHistory[currentChatId].push({ text: 'Recibido. Te responderé pronto. 💬', type: 'received' });
+                            renderChatMessages(currentChatId);
+                        }
+                    }, 1000);
+                }
+            }
+
+            if (chatSendButton) {
+                chatSendButton.addEventListener('click', sendMessage);
+            }
+            if (chatInputField) {
+                chatInputField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            // --- Funcionalidad de búsqueda en Perfiles de Profesionales ---
+            const specialtySearchInput = document.getElementById('specialtySearchInput');
+            const professionalCards = document.querySelectorAll('.professional-card');
+
+            if (specialtySearchInput) {
+                specialtySearchInput.addEventListener('keyup', function() {
+                    const searchTerm = specialtySearchInput.value.toLowerCase();
+                    professionalCards.forEach(card => {
+                        const specialty = card.getAttribute('data-specialty').toLowerCase();
+                        if (specialty.includes(searchTerm)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // --- Abrir Chat desde Foro (Contactar Usuario) ---
+            document.querySelectorAll('.contact-user-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!isLoggedIn) {
+                        alert('¡Necesitas registrarte o iniciar sesión para contactar usuarios! 🔒');
+                        registerProfessionalModal.classList.add('show'); // Mostrar modal de registro profesional
+                        return;
+                    }
+                    if (currentUserType !== 'professional') {
+                        alert('Solo los profesionales pueden contactar a los usuarios solicitantes. 🚫');
+                        return;
+                    }
+                    const userId = this.getAttribute('data-user-id');
+                    const userName = this.getAttribute('data-user-name');
+                    
+                    currentChatId = userId; // Establece el ID del chat actual
+                    chatTargetNameSpan.textContent = userName;
+                    
+                    chatContainer.style.display = 'flex';
+                    chatContainer.classList.remove('minimized');
+                    renderChatMessages(currentChatId); // Carga los mensajes del chat específico
+                    
+                    // Simular un mensaje inicial si el chat es nuevo
+                    if (chatHistory[currentChatId].length === 0) {
+                         chatHistory[currentChatId].push({ text: `Hola ${userName}, me interesa tu proyecto: "${this.closest('.forum-post-item').querySelector('h3').textContent}". ¿Podemos hablar más?`, type: 'sent' });
+                         renderChatMessages(currentChatId);
+                    }
+                });
+            });
+
+            // --- Ver Perfil y Contactar Trabajador (para usuarios) ---
+            document.querySelectorAll('.professional-card .btn-view-profile').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!isLoggedIn) {
+                        alert('¡Necesitas registrarte o iniciar sesión para ver perfiles! 🔒');
+                        registerUserModal.classList.add('show'); // Mostrar modal de registro de usuario
+                        return;
+                    }
+                    const profileId = this.getAttribute('data-profile-id');
+                    const professional = dummyProfessionals.find(p => p.id === profileId);
+
+                    if (professional) {
+                        document.getElementById('viewProfileName').textContent = professional.name;
+                        document.getElementById('viewProfileSpecialty').textContent = professional.specialty;
+                        document.getElementById('viewProfileLocation').textContent = professional.location;
+                        document.getElementById('viewProfileRate').textContent = professional.rate;
+                        document.getElementById('viewProfileDescription').textContent = professional.description;
+                        
+                        // Cargar imágenes de trabajo simuladas
+                        const workPhotosContainer = document.getElementById('viewProfileWorkPhotos');
+                        workPhotosContainer.innerHTML = ''; // Limpiar anteriores
+                        professional.workPhotos.forEach(imgSrc => {
+                            const img = document.createElement('img');
+                            img.src = imgSrc;
+                            img.alt = `Trabajo de ${professional.name}`;
+                            workPhotosContainer.appendChild(img);
+                        });
+
+                        document.getElementById('viewProfileContactBtn').setAttribute('data-worker-id', professional.id);
+                        document.getElementById('viewProfileContactBtn').setAttribute('data-worker-name', professional.name);
+
+                        viewProfileModal.classList.add('show');
+                    } else {
+                        alert('Perfil no encontrado. 😔');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.professional-card .btn-contact-worker, #viewProfileContactBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!isLoggedIn) {
+                        alert('¡Necesitas registrarte o iniciar sesión para contactar trabajadores! 🔒');
+                        registerUserModal.classList.add('show'); // Mostrar modal de registro de usuario
+                        return;
+                    }
+                    if (currentUserType !== 'user') {
+                        alert('Solo los usuarios que buscan profesionales pueden contactar trabajadores. 🚫');
+                        return;
+                    }
+                    const workerId = this.getAttribute('data-worker-id');
+                    const workerName = this.getAttribute('data-worker-name');
+
+                    currentChatId = workerId; // Establece el ID del chat actual
+                    chatTargetNameSpan.textContent = workerName;
+
+                    chatContainer.style.display = 'flex';
+                    chatContainer.classList.remove('minimized');
+                    renderChatMessages(currentChatId); // Carga los mensajes del chat específico
+
+                    // Simular un mensaje inicial si el chat es nuevo
+                    if (chatHistory[currentChatId].length === 0) {
+                        chatHistory[currentChatId].push({ text: `¡Hola ${workerName}! Me gustaría consultarte por un proyecto.`, type: 'sent' });
+                        renderChatMessages(currentChatId);
+                    }
+                    viewProfileModal.classList.remove('show'); // Cierra el modal de perfil si se abrió desde allí
+                });
+            });
+
+            // --- Publicar en el Foro (para usuarios) ---
+            document.getElementById('newForumPostForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!isLoggedIn || currentUserType !== 'user') {
+                    alert('¡Debes ser un usuario registrado para publicar en el foro! 🔒');
+                    return;
+                }
+
+                const postTitle = document.getElementById('postTitle').value;
+                const postDescription = document.getElementById('postDescription').value;
+                const forumPostsContainer = document.getElementById('forumPostsContainer');
+                const newPostId = `post${Date.now()}`; // ID único para el post
+
+                const newPostDiv = document.createElement('div');
+                newPostDiv.classList.add('forum-post-item');
+                newPostDiv.setAttribute('data-post-id', newPostId);
+                newPostDiv.setAttribute('data-user-id', 'currentUser'); // Asigna el ID del usuario actual (simulado)
+                newPostDiv.setAttribute('data-user-name', currentUserName); // Nombre del usuario actual
+                newPostDiv.setAttribute('data-user-location', 'Ubicación Desconocida'); // Simulado, se podría añadir campo en registro
+                newPostDiv.setAttribute('data-user-phone', '09X-XXXXXXX'); // Simulado, se podría añadir campo en registro
+
+
+                newPostDiv.innerHTML = `
+                    <h3 class="post-title-clickable">${postTitle}</h3>
+                    <p>${postDescription}</p>
+                    <p class="post-meta">Publicado por: <span class="post-author-clickable" data-user-id="currentUser" data-user-name="${currentUserName}">Tú (${currentUserName})</span> | Ubicación: (Tu Ubicación)</p>
+                    <button class="btn-contact contact-user-btn" data-user-id="currentUser" data-user-name="${currentUserName}">Contactar Usuario</button>
+                `;
+
+                forumPostsContainer.prepend(newPostDiv); // Añadir al inicio de la lista
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postDescription').value = '';
+
+                alert('¡Proyecto publicado! Los profesionales serán notificados. 📢 (Simulación de SMS/WhatsApp)');
+
+                // Re-attach event listeners for the new post
+                attachForumPostEventListeners();
+            });
+
+            // --- Ver perfil de usuario (para profesionales) ---
+            function attachForumPostEventListeners() {
+                document.querySelectorAll('.post-title-clickable, .post-author-clickable').forEach(element => {
+                    element.removeEventListener('click', handleUserClick); // Evitar duplicados
+                    element.addEventListener('click', handleUserClick);
+                });
+            }
+
+            function handleUserClick() {
+                if (!isLoggedIn || currentUserType !== 'professional') {
+                    alert('Solo los profesionales pueden ver perfiles de usuario desde aquí. 🚫');
+                    return;
+                }
+                const userId = this.getAttribute('data-user-id');
+                const userName = this.getAttribute('data-user-name');
+                const userLocation = this.closest('.forum-post-item').getAttribute('data-user-location');
+                const userPhone = this.closest('.forum-post-item').getAttribute('data-user-phone');
+                const userEmail = dummyUsers.find(u => u.id === userId)?.email || 'email@example.com'; // Buscar email simulado
+
+                document.getElementById('viewUserName').textContent = userName;
+                document.getElementById('viewUserLocation').textContent = userLocation;
+                document.getElementById('viewUserPhone').textContent = userPhone;
+                document.getElementById('viewUserEmail').textContent = userEmail;
+                
+                document.getElementById('viewUserContactBtn').setAttribute('data-user-id', userId);
+                document.getElementById('viewUserContactBtn').setAttribute('data-user-name', userName);
+
+                viewUserModal.classList.add('show');
+            }
+
+            // --- Contactar usuario desde su perfil (para profesionales) ---
+            document.getElementById('viewUserContactBtn').addEventListener('click', function() {
+                const userId = this.getAttribute('data-user-id');
+                const userName = this.getAttribute('data-user-name');
+
+                currentChatId = userId; // Establece el ID del chat actual
+                chatTargetNameSpan.textContent = userName;
+
+                chatContainer.style.display = 'flex';
+                chatContainer.classList.remove('minimized');
+                renderChatMessages(currentChatId); // Carga los mensajes del chat específico
+                
+                // Simular un mensaje inicial si el chat es nuevo
+                if (chatHistory[currentChatId].length === 0) {
+                     chatHistory[currentChatId].push({ text: `Hola ${userName}, te contacto desde ManosUY.`, type: 'sent' });
+                     renderChatMessages(currentChatId);
+                }
+                viewUserModal.classList.remove('show');
+            });
+
+
+            renderChatMessages('default'); // Renderiza los mensajes iniciales del chat predeterminado
+            updateUI(); // Actualiza el UI al cargar la página (determina qué secciones se muestran)
+            attachForumPostEventListeners(); // Adjuntar listeners a los posts del foro existentes
+        });
+
+        // Smooth scroll effect for header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
